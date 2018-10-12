@@ -1,12 +1,12 @@
 STATUS: Validatating gr.
 WARNING:   No explicit src path.
 STATUS: Validation succeeded.
-STATUS: Started run at: 2018-10-04, 16:57:22
+STATUS: Started run at: 2018-10-11, 17:19:49
 STATUS: Validatating gr.
 STATUS: Validation succeeded.
 STATUS: Preparing data.
 STATUS: Work-DIB creation.
-STATUS: Work-DIB creation complete: 133x160@8.
+STATUS: Work-DIB creation complete: 12x12@8.
 STATUS: Tile preparation.
 STATUS: Tile preparation complete.
 STATUS: Graphics preparation.
@@ -14,5 +14,5 @@ STATUS: Graphics preparation complete.
 STATUS: Palette preparation.
 STATUS: Palette preparation complete.
 STATUS: Data preparation complete.
-STATUS: Export to C: fishtank into Z:\Users\jennakohls\Downloads\fishtank.c .
+STATUS: Export to C: pumpkin into Z:\Users\jennakohls\CS2261\Lab05\pumpkin.c .
 STATUS: Run completed :).
