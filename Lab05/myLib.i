@@ -84,29 +84,38 @@ void drawRect3(int row, int col, int height, int width, volatile unsigned short 
 
 
 void drawRect4(int row, int col, int height, int width, volatile unsigned char colorIndex) {
-# 68 "myLib.c"
-    volatile unsigned int color = colorIndex << 24 | colorIndex << 16 | colorIndex << 8 | colorIndex;
 
-    if((width & 1) && (col & 1)){
+    volatile unsigned int color = colorIndex << 24 | colorIndex << 16 | colorIndex << 8 | colorIndex;
+    if (width == 1) {
+        setPixel4(row, col, colorIndex);
+    } else if (width == 2) {
+        setPixel4(row, col, colorIndex);
+        setPixel4(row, col + 1, colorIndex);
+    }
+
+    else if((width & 1) && (col & 1)){
         for(int r = 0; r < height; r++) {
             setPixel4(row + r, col, colorIndex);
             DMANow(3, &color, &videoBuffer[((row + r)*(240)+(col + 1))
                              / 2], (2 << 23) | (0 << 21) | (width / 2));
         }
-    } if ((width & 1) && !(col & 1)){
-        for(int r = 0; r < height; r++) {
-            DMANow(3, &color, &videoBuffer[((row + r)*(240)+(col))
-                             / 2], (2 << 23) | (0 << 21) | ((width - 1) / 2));
-            setPixel4(row + r, col + width, colorIndex);
-        }
-    } if(!(width & 1) && (col & 1)){
+    }
+    else if(col & 1){
         for(int r = 0; r < height; r++) {
             setPixel4(row + r, col, colorIndex);
             DMANow(3, &color, &videoBuffer[((row + r)*(240)+(col + 1))
                              / 2], (2 << 23) | (0 << 21) | ((width - 2) / 2 ));
-            setPixel4(row + r, col + width, colorIndex);
+            setPixel4(row + r, col + (width - 1), colorIndex);
         }
-    } else{
+    }
+    else if (width & 1){
+        for(int r = 0; r < height; r++) {
+            DMANow(3, &color, &videoBuffer[((row + r)*(240)+(col))
+                             / 2], (2 << 23) | (0 << 21) | ((width - 1) / 2));
+            setPixel4(row + r, col + (width - 1), colorIndex);
+        }
+    }
+    else{
         for(int r = 0; r < height; r++) {
             DMANow(3, &color, &videoBuffer[((row + r)*(240)+(col))
                              / 2], (2 << 23) | (0 << 21) |( width / 2));
