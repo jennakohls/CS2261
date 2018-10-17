@@ -1,5 +1,5 @@
 PRODUCT_NAME       = HW05
-SOURCES            = font.c game.c main.c myLib.c text.c 
+SOURCES            = font.c game.c main.c myLib.c text.c pacxon.c pacman.c
 CCPATH             = /Users/jennakohls/bin
 DKPATH             = "/Users/jennakohls/CS2261/devkitARM 2/bin"
 VBASIM             = open /Users/jennakohls/CS2261/visualboyadvance-m.app

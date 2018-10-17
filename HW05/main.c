@@ -3,8 +3,7 @@
 #include "myLib.h"
 #include "text.h"
 #include "game.h"
-#include "Joshy.h"
-
+#include "pacxon.h"
 
 // Prototypes
 void initialize();
@@ -16,13 +15,13 @@ void goToGame();
 void game();
 void goToPause();
 void pause();
-void goToWin();
-void win();
 void goToLose();
 void lose();
+void goToWin();
+void win();
 
 // States
-enum {START, GAME, PAUSE, WIN, LOSE};
+enum {START, GAME, PAUSE, LOSE, WIN};
 int state;
 
 // Button Variables
@@ -33,7 +32,8 @@ unsigned short oldButtons;
 int seed;
 
 // Text Buffer
-char buffer[41];
+char buffer[7];
+char buffer1[6];
 
 int main() {
 
@@ -57,11 +57,11 @@ int main() {
             case PAUSE:
                 pause();
                 break;
-            case WIN:
-                win();
-                break;
             case LOSE:
                 lose();
+                break;
+            case WIN:
+                win();
                 break;
         }
 
@@ -80,13 +80,9 @@ void initialize() {
 // Sets up the start state
 void goToStart() {
 
-    //TODO 3.6: Call DMANow to load in BillPal
-    DMANow(3, JoshyPal, PALETTE, 256);
+    DMANow(3, pacxonPal, PALETTE, 256);
+    drawFullscreenImage4(pacxonBitmap);
 
-    // UNCOMMENT 3.0
-    drawFullscreenImage4(JoshyBitmap);
-
-    //TODO 2.1: Wait for vertical blank and flip the page (you don't need to reload the palette)
     waitForVBlank();
     flipPage();
 
@@ -129,8 +125,11 @@ void game() {
     drawGame();
 
     // Update the score
-    sprintf(buffer, "Balls Remaining: %d", ballsRemaining);
-    drawString4(145, 5, buffer, WHITEID);
+    sprintf(buffer, "Score:");
+    drawString4(8, 172, buffer, WHITEID);
+
+    sprintf(buffer1, "%d", score);
+    drawString4(24, 172, buffer1, WHITEID);
 
     waitForVBlank();
     flipPage();
@@ -138,10 +137,10 @@ void game() {
     // State transitions
     if (BUTTON_PRESSED(BUTTON_START))
         goToPause();
-    else if (ballsRemaining == 0)
-        goToWin();
-    else if (BUTTON_PRESSED(BUTTON_B))
+    else if (livesRemaining == 0)
         goToLose();
+    else if (score == 324)
+        goToWin();
 }
 
 // Sets up the pause state
@@ -150,10 +149,8 @@ void goToPause() {
     fillScreen4(GRAYID);
     drawString4(80-3, 120-15, "Pause", BLACKID);
 
-    //TODO 2.2: Wait for vertical blank and flip the page
     waitForVBlank();
     flipPage();
-
 
     state = PAUSE;
 }
@@ -161,51 +158,24 @@ void goToPause() {
 // Runs every frame of the pause state
 void pause() {
 
-    // Lock the framerate to 60 fps
     waitForVBlank();
 
-    // State transitions
     if (BUTTON_PRESSED(BUTTON_START))
         goToGame();
     else if (BUTTON_PRESSED(BUTTON_SELECT))
         goToStart();
 }
 
-// Sets up the win state
-void goToWin() {
-
-    fillScreen4(GREENID);
-    drawString4(80-3, 120-9, "Win", BLACKID);
-
-    //TODO 2.3: Wait for vertical blank and flip the page
-    waitForVBlank();
-    flipPage();
-
-
-    state = WIN;
-}
-
-// Runs every frame of the win state
-void win() {
-
-    // Lock the framerate to 60 fps
-    waitForVBlank();
-
-    // State transitions
-    if (BUTTON_PRESSED(BUTTON_START))
-        goToStart();
-}
 
 // Sets up the lose state
 void goToLose() {
 
     fillScreen4(REDID);
-    drawString4(80-3, 120-12, "Lose", BLACKID);
+    drawString4(65, 100, "You Lost", BLACKID);
+    drawString4(77, 60, "Press Start to Restart", BLACKID);
 
-    //TODO 2.4: Wait for vertical blank and flip the page
     waitForVBlank();
     flipPage();
-
 
     state = LOSE;
 }
@@ -213,10 +183,27 @@ void goToLose() {
 // Runs every frame of the lose state
 void lose() {
 
-    // Lock the framerate to 60 fps
     waitForVBlank();
 
-    // State transitions
+    if (BUTTON_PRESSED(BUTTON_START))
+        goToStart();
+}
+
+void goToWin(){
+
+    //set up win screen
+    fillScreen4(GREENID);
+    drawString4(65, 100, "You Won!", BLACKID);
+    drawString4(77, 60, "Press Start to Restart", BLACKID);
+
+    waitForVBlank();
+    flipPage();
+
+    state = WIN;
+}
+
+void win() {
+    waitForVBlank();
     if (BUTTON_PRESSED(BUTTON_START))
         goToStart();
 }

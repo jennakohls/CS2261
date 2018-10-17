@@ -1,26 +1,21 @@
-// Player Struct
+//Tile struct
 typedef struct {
 	int row;
 	int col;
-	int cdel;
-	int height;
-	int width;
-	unsigned char color;
-	int bulletTimer;
-	int cDirection; // So the bullet knows which cdel to take
-} PLAYER;
+	int edge;
+	int active;
+} TILE;
 
-// Bullet Struct
+//Player Struct
 typedef struct {
 	int row;
 	int col;
 	int rdel;
 	int cdel;
-	int height;
-	int width;
-	unsigned char color;
-	int active;
-} BULLET;
+	int drawing;
+	int direction;
+} PLAYER;
+
 
 // Ball Struct
 typedef struct {
@@ -30,23 +25,27 @@ typedef struct {
 	int cdel;
 	int height;
 	int width;
-	int isPumpkin;
 	int active;
 } BALL;
 
 // Constants
-#define BULLETCOUNT 5
 #define BALLCOUNT 5
+#define TILECOUNT 400
+#define TILESPERROW 20
+#define TILESPERCOL 20
+#define TILESIZE 8
+#define PLAYERSIZE 8
 
 // Variables
 extern PLAYER player;
-extern BULLET bullets[BULLETCOUNT];
 extern BALL balls[BALLCOUNT];
-extern int ballsRemaining;
+extern int livesRemaining;
+extern int score;
+extern int tempScore;
+extern TILE tile[TILECOUNT];
 
 // Custom Game Colors
 #define NUMCOLORS 6
-// This does an enum trick to make them the last indeces of the palette
 enum {BLACKID=(256-NUMCOLORS), BLUEID, GREENID, REDID, WHITEID, GRAYID};
 extern unsigned short colors[NUMCOLORS];
 
@@ -54,14 +53,12 @@ extern unsigned short colors[NUMCOLORS];
 void initGame();
 void updateGame();
 void drawGame();
-void drawBar();
+void initTiles();
+void updateTile(TILE *);
+void drawTile(TILE *);
 void initPlayer();
 void updatePlayer();
 void drawPlayer();
-void initBullets();
-void fireBullet();
-void updateBullet(BULLET *);
-void drawBullet(BULLET *);
 void initBalls();
 void updateBall(BALL *);
 void drawBall(BALL *);

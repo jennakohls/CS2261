@@ -137,6 +137,8 @@ void DMANow(int channel, volatile const void *src, volatile void *dst, unsigned 
 
 // Miscellaneous Functions
 int collision(int rowA, int colA, int heightA, int widthA, int rowB, int colB, int heightB, int widthB);
+int colCollision(int colA, int widthA, int colB, int widthB);
+int rowCollision(int rowA, int heightA, int rowB, int heightB);
 
 
 #endif

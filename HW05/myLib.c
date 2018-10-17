@@ -82,7 +82,6 @@ void fillScreen3(volatile unsigned short color) {
 // Fill the entire screen with a single color in Mode 4
 void fillScreen4(volatile unsigned char colorIndex) {
 
-    // TODO 2.0: Write this function using DMA
     volatile u16 color = (colorIndex << 8) | colorIndex;
     DMANow(3, &color, videoBuffer, DMA_SOURCE_FIXED |
         (SCREENWIDTH * SCREENHEIGHT) / 2);
@@ -100,7 +99,6 @@ void drawImage3(int row, int col, int height, int width, const unsigned short *i
 // Draw an image at the specified location and size in Mode 4 (must be even col and width)
 void drawImage4(int row, int col, int height, int width, const unsigned short *image) {
 
-    // TODO 4.0: Write this function using DMA
     for(int i = 0; i < height; i++){
         DMANow(3, &image[OFFSET(i, 0, width / 2)],
             &videoBuffer[OFFSET(row + i, col, SCREENWIDTH) / 2], width / 2);
@@ -116,7 +114,6 @@ void drawFullscreenImage3(const unsigned short *image) {
 // Fill the entire screen with an image in Mode 4
 void drawFullscreenImage4(const unsigned short *image) {
 
-    // TODO 3.0: Write this function using DMA
     DMANow(3, image, videoBuffer, SCREENWIDTH * SCREENHEIGHT / 2);
 }
 
@@ -157,4 +154,14 @@ int collision(int rowA, int colA, int heightA, int widthA, int rowB, int colB, i
 
     return rowA < rowB + heightB - 1 && rowA + heightA - 1 > rowB
         && colA < colB + widthB - 1 && colA + widthA - 1 > colB;
+}
+
+int rowCollision(int rowA, int heightA, int rowB, int heightB) {
+
+    return rowA < rowB + heightB - 1 && rowA + heightA - 1 > rowB;
+}
+
+int colCollision(int colA, int widthA, int colB, int widthB) {
+
+    return colA < colB + widthB - 1 && colA + widthA - 1 > colB;
 }
