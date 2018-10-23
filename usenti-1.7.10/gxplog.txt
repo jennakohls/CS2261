@@ -1,18 +1,19 @@
 STATUS: Validatating gr.
 WARNING:   No explicit src path.
 STATUS: Validation succeeded.
-STATUS: Started run at: 2018-10-16, 23:54:05
+STATUS: Started run at: 2018-10-18, 17:24:03
 STATUS: Validatating gr.
 STATUS: Validation succeeded.
 STATUS: Preparing data.
 STATUS: Work-DIB creation.
-STATUS: Work-DIB creation complete: 240x160@8.
+STATUS: Work-DIB creation complete: 48x48@8.
 STATUS: Tile preparation.
+STATUS:   tiling to 8x8 tiles.
 STATUS: Tile preparation complete.
 STATUS: Graphics preparation.
 STATUS: Graphics preparation complete.
 STATUS: Palette preparation.
 STATUS: Palette preparation complete.
 STATUS: Data preparation complete.
-STATUS: Export to C: pacxon into Z:\Users\jennakohls\CS2261\HW05\pacxon.c .
+STATUS: Export to C: lab06 into Z:\Users\jennakohls\CS2261\Lab06\lab06.c .
 STATUS: Run completed :).
