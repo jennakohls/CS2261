@@ -1,12 +1,12 @@
 STATUS: Validatating gr.
 WARNING:   No explicit src path.
 STATUS: Validation succeeded.
-STATUS: Started run at: 2018-10-25, 16:25:03
+STATUS: Started run at: 2018-10-30, 22:50:49
 STATUS: Validatating gr.
 STATUS: Validation succeeded.
 STATUS: Preparing data.
 STATUS: Work-DIB creation.
-STATUS: Work-DIB creation complete: 512x512@8.
+STATUS: Work-DIB creation complete: 512x256@8.
 STATUS: Tile preparation.
 STATUS:   tiling to 256x256 tiles.
 STATUS:   tiling to 8x8 tiles.
@@ -21,5 +21,5 @@ STATUS: Graphics preparation complete.
 STATUS: Palette preparation.
 STATUS: Palette preparation complete.
 STATUS: Data preparation complete.
-STATUS: Export to C: bg into Z:\Users\jennakohls\CS2261\Lab07\bg.c .
+STATUS: Export to C: trees into Z:\Users\jennakohls\CS2261\Lab08\trees.c .
 STATUS: Run completed :).
