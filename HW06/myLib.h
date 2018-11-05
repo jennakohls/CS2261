@@ -123,6 +123,7 @@ typedef struct {
 
 // Object Attribute Memory
 #define OAM ((OBJ_ATTR*)(0x7000000))
+extern OBJ_ATTR shadowOAM[];
 
 // Attribute 0
 #define ATTR0_REGULAR      (0<<8)  // Normal Rendering
