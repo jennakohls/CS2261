@@ -20,7 +20,7 @@ initialize:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, r5, r6, r7, r8, lr}
+	push	{r4, r5, r6, lr}
 	mov	r2, #768
 	mov	r5, #67108864
 	ldr	r4, .L4
@@ -31,25 +31,17 @@ initialize:
 	mov	r0, #3
 	mov	lr, pc
 	bx	r4
-	mov	r3, #7168
-	ldr	r7, .L4+8
-	ldr	r6, .L4+12
-	strh	r3, [r5, #10]	@ movhi
-	mov	r2, #100663296
+	mov	r2, #7168
 	mov	r3, #1856
+	strh	r2, [r5, #10]	@ movhi
+	ldr	r1, .L4+8
+	mov	r2, #100663296
+	mov	r0, #3
+	mov	lr, pc
+	bx	r4
+	mov	r3, #1024
+	ldr	r2, .L4+12
 	ldr	r1, .L4+16
-	mov	r0, #3
-	mov	lr, pc
-	bx	r4
-	mov	r2, r7
-	mov	r1, r6
-	mov	r3, #1024
-	mov	r0, #3
-	mov	lr, pc
-	bx	r4
-	mov	r2, r7
-	mov	r1, r6
-	mov	r3, #1024
 	mov	r0, #3
 	mov	lr, pc
 	bx	r4
@@ -73,7 +65,7 @@ initialize:
 	strh	r1, [r3]	@ movhi
 	ldr	r3, .L4+52
 	ldrh	r2, [r2, #48]
-	pop	{r4, r5, r6, r7, r8, lr}
+	pop	{r4, r5, r6, lr}
 	strh	r2, [r3]	@ movhi
 	bx	lr
 .L5:
@@ -81,9 +73,9 @@ initialize:
 .L4:
 	.word	DMANow
 	.word	furtherTreesPal
+	.word	furtherTreesTiles
 	.word	100720640
 	.word	furtherTreesMap
-	.word	furtherTreesTiles
 	.word	23812
 	.word	5984
 	.word	treesTiles

@@ -127,7 +127,7 @@ void initialize() {
     DMANow(3, furtherTreesTiles, &((charblock *)0x6000000)[0], 3712 / 2);
 
     DMANow(3, furtherTreesMap, &((screenblock *)0x6000000)[28], 2048 / 2);
-    DMANow(3, furtherTreesMap, &((screenblock *)0x6000000)[28], 2048 / 2);
+
 
     (*(volatile unsigned short*)0x4000008) = (1<<14) | ((29)<<8) | ((1)<<2) | (0<<7);
 

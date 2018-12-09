@@ -48,7 +48,7 @@ void initialize() {
     DMANow(3, furtherTreesTiles, &CHARBLOCK[0], furtherTreesTilesLen / 2);
     // TODO 2.5 - load furtherTrees map to screenblock
     DMANow(3, furtherTreesMap, &SCREENBLOCK[28], furtherTreesMapLen / 2);
-    DMANow(3, furtherTreesMap, &SCREENBLOCK[28], furtherTreesMapLen / 2);
+    //DMANow(3, furtherTreesMap, &SCREENBLOCK[28], furtherTreesMapLen / 2);
     // TODO 4.2 - set up bg 0 control register
     REG_BG0CNT = BG_SIZE_WIDE | BG_SCREENBLOCK(29) | BG_CHARBLOCK(1) | BG_4BPP;
     // TODO 4.3 - load trees tiles to charblock
